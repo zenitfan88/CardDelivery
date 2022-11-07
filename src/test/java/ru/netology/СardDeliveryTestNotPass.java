@@ -4,10 +4,9 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import static com.codeborne.selenide.Condition.cssClass;
 import static com.codeborne.selenide.Condition.exactText;
@@ -26,17 +25,18 @@ public class СardDeliveryTestNotPass {
     private void assertTrue(String element) {
     }
 
+    public String generateDate(int days) {
+        return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+    }
+
     @Test
     void cardDeliveryTestNotPassCity() {
-        Calendar calendar = new GregorianCalendar();
-        calendar.add(Calendar.DAY_OF_YEAR, 4);
-        SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
-        String str = format1.format(calendar.getTime());
+        String planningDate = generateDate(4);
         $("span[data-test-id='city'] input").val("New-York");
-        $x("//*[@data-test-id='date']//input[@class='input__control']").sendKeys(Keys.CONTROL
-                + "A");
+        $x("//*[@data-test-id='date']//input[@class='input__control']")
+                .sendKeys(Keys.CONTROL + "A");
         $x("//*[@data-test-id='date']//input[@class='input__control']").sendKeys(Keys.BACK_SPACE);
-        $x("//*[@data-test-id='date']//input[@class='input__control']").val(str);
+        $x("//*[@data-test-id='date']//input[@class='input__control']").val(planningDate);
         $x("//*[@data-test-id='name']//input[@class='input__control']").val("Иван Иванов");
         $x("//input[@name='phone']").val("+79278529614");
         $x("//label[@data-test-id='agreement']").click();
@@ -47,15 +47,12 @@ public class СardDeliveryTestNotPass {
 
     @Test
     void cardDeliveryTestNotPassNoCity() {
-        Calendar calendar = new GregorianCalendar();
-        calendar.add(Calendar.DAY_OF_YEAR, 4);
-        SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
-        String str = format1.format(calendar.getTime());
+        String planningDate = generateDate(4);
         $("span[data-test-id='city'] input").val("");
-        $x("//*[@data-test-id='date']//input[@class='input__control']").sendKeys(Keys.CONTROL
-                + "A");
+        $x("//*[@data-test-id='date']//input[@class='input__control']")
+                .sendKeys(Keys.CONTROL + "A");
         $x("//*[@data-test-id='date']//input[@class='input__control']").sendKeys(Keys.BACK_SPACE);
-        $x("//*[@data-test-id='date']//input[@class='input__control']").val(str);
+        $x("//*[@data-test-id='date']//input[@class='input__control']").val(planningDate);
         $x("//*[@data-test-id='name']//input[@class='input__control']").val("Иван Иванов");
         $x("//input[@name='phone']").val("+79278529614");
         $x("//label[@data-test-id='agreement']").click();
@@ -66,15 +63,12 @@ public class СardDeliveryTestNotPass {
 
     @Test
     void cardDeliveryTestNotPassData() {
-        Calendar calendar = new GregorianCalendar();
-        calendar.add(Calendar.DAY_OF_YEAR, 2);
-        SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
-        String str = format1.format(calendar.getTime());
+        String planningDate = generateDate(2);
         $("span[data-test-id='city'] input").val("Ульяновск");
-        $x("//*[@data-test-id='date']//input[@class='input__control']").sendKeys(Keys.CONTROL
-                + "A");
+        $x("//*[@data-test-id='date']//input[@class='input__control']")
+                .sendKeys(Keys.CONTROL + "A");
         $x("//*[@data-test-id='date']//input[@class='input__control']").sendKeys(Keys.BACK_SPACE);
-        $x("//*[@data-test-id='date']//input[@class='input__control']").val(str);
+        $x("//*[@data-test-id='date']//input[@class='input__control']").val(planningDate);
         $x("//*[@data-test-id='name']//input[@class='input__control']").val("Иван Иванов");
         $x("//input[@name='phone']").val("+79278529614");
         $x("//label[@data-test-id='agreement']").click();
@@ -86,8 +80,8 @@ public class СardDeliveryTestNotPass {
     @Test
     void cardDeliveryTestNotPassNoData() {
         $("span[data-test-id='city'] input").val("Ульяновск");
-        $x("//*[@data-test-id='date']//input[@class='input__control']").sendKeys(Keys.CONTROL
-                + "A");
+        $x("//*[@data-test-id='date']//input[@class='input__control']")
+                .sendKeys(Keys.CONTROL + "A");
         $x("//*[@data-test-id='date']//input[@class='input__control']").sendKeys(Keys.BACK_SPACE);
         $x("//*[@data-test-id='name']//input[@class='input__control']").val("Иван Иванов");
         $x("//input[@name='phone']").val("+79278529614");
@@ -99,15 +93,12 @@ public class СardDeliveryTestNotPass {
 
     @Test
     void cardDeliveryTestNotPassName() {
-        Calendar calendar = new GregorianCalendar();
-        calendar.add(Calendar.DAY_OF_YEAR, 4);
-        SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
-        String str = format1.format(calendar.getTime());
+        String planningDate = generateDate(4);
         $("span[data-test-id='city'] input").val("Ульяновск");
-        $x("//*[@data-test-id='date']//input[@class='input__control']").sendKeys(Keys.CONTROL
-                + "A");
+        $x("//*[@data-test-id='date']//input[@class='input__control']")
+                .sendKeys(Keys.CONTROL + "A");
         $x("//*[@data-test-id='date']//input[@class='input__control']").sendKeys(Keys.BACK_SPACE);
-        $x("//*[@data-test-id='date']//input[@class='input__control']").val(str);
+        $x("//*[@data-test-id='date']//input[@class='input__control']").val(planningDate);
         $x("//*[@data-test-id='name']//input[@class='input__control']").val("Ivan");
         $x("//input[@name='phone']").val("+79278529614");
         $x("//label[@data-test-id='agreement']").click();
@@ -118,15 +109,12 @@ public class СardDeliveryTestNotPass {
 
     @Test
     void cardDeliveryTestNotPassNoName() {
-        Calendar calendar = new GregorianCalendar();
-        calendar.add(Calendar.DAY_OF_YEAR, 4);
-        SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
-        String str = format1.format(calendar.getTime());
+        String planningDate = generateDate(4);
         $("span[data-test-id='city'] input").val("Ульяновск");
-        $x("//*[@data-test-id='date']//input[@class='input__control']").sendKeys(Keys.CONTROL
-                + "A");
+        $x("//*[@data-test-id='date']//input[@class='input__control']")
+                .sendKeys(Keys.CONTROL + "A");
         $x("//*[@data-test-id='date']//input[@class='input__control']").sendKeys(Keys.BACK_SPACE);
-        $x("//*[@data-test-id='date']//input[@class='input__control']").val(str);
+        $x("//*[@data-test-id='date']//input[@class='input__control']").val(planningDate);
         $x("//*[@data-test-id='name']//input[@class='input__control']").val("");
         $x("//input[@name='phone']").val("+79278529614");
         $x("//label[@data-test-id='agreement']").click();
@@ -137,15 +125,12 @@ public class СardDeliveryTestNotPass {
 
     @Test
     void cardDeliveryTestNotPassPhone() {
-        Calendar calendar = new GregorianCalendar();
-        calendar.add(Calendar.DAY_OF_YEAR, 4);
-        SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
-        String str = format1.format(calendar.getTime());
+        String planningDate = generateDate(4);
         $("span[data-test-id='city'] input").val("Ульяновск");
-        $x("//*[@data-test-id='date']//input[@class='input__control']").sendKeys(Keys.CONTROL
-                + "A");
+        $x("//*[@data-test-id='date']//input[@class='input__control']")
+                .sendKeys(Keys.CONTROL + "A");
         $x("//*[@data-test-id='date']//input[@class='input__control']").sendKeys(Keys.BACK_SPACE);
-        $x("//*[@data-test-id='date']//input[@class='input__control']").val(str);
+        $x("//*[@data-test-id='date']//input[@class='input__control']").val(planningDate);
         $x("//*[@data-test-id='name']//input[@class='input__control']").val("Иван Иванов");
         $x("//input[@name='phone']").val("+7927852961");
         $x("//label[@data-test-id='agreement']").click();
@@ -156,15 +141,12 @@ public class СardDeliveryTestNotPass {
 
     @Test
     void cardDeliveryTestNotPassNoCheckBox() {
-        Calendar calendar = new GregorianCalendar();
-        calendar.add(Calendar.DAY_OF_YEAR, 4);
-        SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
-        String str = format1.format(calendar.getTime());
+        String planningDate = generateDate(4);
         $("span[data-test-id='city'] input").val("Ульяновск");
-        $x("//*[@data-test-id='date']//input[@class='input__control']").sendKeys(Keys.CONTROL
-                + "A");
+        $x("//*[@data-test-id='date']//input[@class='input__control']")
+                .sendKeys(Keys.CONTROL + "A");
         $x("//*[@data-test-id='date']//input[@class='input__control']").sendKeys(Keys.BACK_SPACE);
-        $x("//*[@data-test-id='date']//input[@class='input__control']").val(str);
+        $x("//*[@data-test-id='date']//input[@class='input__control']").val(planningDate);
         $x("//*[@data-test-id='name']//input[@class='input__control']").val("Иван Иванов");
         $x("//input[@name='phone']").val("+79279631423");
         $x("//*[text()='Забронировать']").click();
